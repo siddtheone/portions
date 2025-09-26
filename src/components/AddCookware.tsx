@@ -22,7 +22,11 @@ export function AddCookware() {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} startIcon={<Add />}>
+      <Button
+        onClick={() => setOpen(true)}
+        sx={{ color: "white" }}
+        startIcon={<Add />}
+      >
         Add Cookware
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>

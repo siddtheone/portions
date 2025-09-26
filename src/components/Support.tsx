@@ -10,6 +10,7 @@ export function Support() {
       target="_blank"
       rel="noopener noreferrer"
       endIcon={<Coffee />}
+      sx={{ color: "white" }}
     >
       Appreciate this?
     </Button>
