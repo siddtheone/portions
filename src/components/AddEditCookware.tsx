@@ -1,24 +1,6 @@
-import { Cookware } from "@/types";
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  TextField,
-} from "@mui/material";
-import { NumericFormat } from "react-number-format";
+import { Box, Button, TextField } from "@mui/material";
 import { MAX_WEIGHT } from "../constants";
-import { createRef, FormEvent } from "react";
-
-const handleInput = (event: React.FormEvent<HTMLInputElement>) => {
-  console.dir(event.target);
-  const value = event.target.value;
-  const cleaned = value.replace(/[-eE]/g, "");
-  if (value !== cleaned) {
-    event.currentTarget.value = cleaned;
-  }
-};
+import { FormEvent } from "react";
 
 export function AddEditCookware({
   name,

@@ -1,7 +1,7 @@
 "use client";
 
 import { Add } from "@mui/icons-material";
-import { Button, Dialog, DialogTitle, Fab } from "@mui/material";
+import { Button, Dialog, DialogTitle } from "@mui/material";
 import { useState } from "react";
 
 import { Cookware } from "@/types";
@@ -22,11 +22,7 @@ export function AddCookware() {
 
   return (
     <>
-      <Button
-        onClick={() => setOpen(true)}
-        startIcon={<Add />}
-        // variant="contained"
-      >
+      <Button onClick={() => setOpen(true)} startIcon={<Add />}>
         Add Cookware
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
