@@ -1,7 +1,6 @@
 export const SERVINGS = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 export const MAX_WEIGHT = 100000;
 export const LOCAL_STORE_KEY = "my-portion";
-export const COFFEE_PAGE = "https://buymeacoffee.com/1313";
 export const MOCK_COOKWARES = [
   {
     id: crypto.randomUUID(),
