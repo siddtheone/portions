@@ -12,3 +12,12 @@ export type CookwareStore = {
   addNewCookware: (data: Pick<Cookware, "name" | "weight">) => void;
   deleteCookware: (id: Cookware["id"]) => void;
 };
+
+export interface Settings {
+  noticeShowed: boolean;
+}
+
+export interface SettingsStore {
+  settings: Settings;
+  updateSettings: (settings: Partial<Settings>) => void;
+}
