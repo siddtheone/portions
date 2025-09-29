@@ -3,8 +3,7 @@
 import { Cookware } from "@/components/Cookware";
 import { useCookware } from "@/store/useCookware";
 import { Notice } from "./Notice";
-import { Alert, Box } from "@mui/material";
-import { Info } from "@mui/icons-material";
+import { Box } from "@mui/material";
 
 export function MyPortion() {
   const cookwares = useCookware((state) => state.cookwares);
