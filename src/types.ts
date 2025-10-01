@@ -4,6 +4,7 @@ export interface Cookware {
   weight: number;
   weightWithMeal: number;
   servingCount: number;
+  expanded: boolean;
 }
 
 export type CookwareStore = {
