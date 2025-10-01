@@ -23,6 +23,7 @@ export const useCookware = create<CookwareStore>()(
               weight,
               weightWithMeal: 0,
               servingCount: 1,
+              expanded: false,
             },
             ...get().cookwares,
           ],
