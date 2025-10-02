@@ -35,11 +35,10 @@ export function Cookware({ cookware }: { cookware: CookwareType }) {
       <CardHeader
         action={
           <>
+            <DeleteCookware id={id} />
             <IconButton onClick={() => onUpdate({ expanded: !expanded })}>
               {expanded ? <ExpandLess /> : <ExpandMore />}
             </IconButton>
-
-            <DeleteCookware id={id} />
           </>
         }
         title={

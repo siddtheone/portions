@@ -14,7 +14,7 @@ export function Support() {
         sx={{ color: "white" }}
         onClick={() => setOpen(true)}
       >
-        Appreciate this?
+        Saved your time?
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle textAlign="center">Show your love</DialogTitle>
