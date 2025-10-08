@@ -5,7 +5,7 @@ import { CssBaseline } from "@mui/material";
 import { ClientThemeProvider } from "../components/ClientThemeProvider";
 import Script from "next/script";
 import { GA_TRACKING_ID } from "@/lib/analytics";
-
+import { APP_DESCRIPTION } from "@/constants";
 const amaranth = Amaranth({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -13,8 +13,8 @@ const amaranth = Amaranth({
 });
 
 export const metadata: Metadata = {
-  title: "Portions",
-  description: "Making post cooking calculations quick",
+  title: "The Portions",
+  description: APP_DESCRIPTION,
 };
 
 export default function RootLayout({
