@@ -32,4 +32,3 @@ export const MOCK_COOKWARES = [
     weight: 1000,
   },
 ];
-export const APP_DESCRIPTION = "Making post cooking calculations quick";
