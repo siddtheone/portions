@@ -2,7 +2,6 @@
 
 import { Cookware } from "@/components/Cookware";
 import { useCookware } from "@/store/useCookware";
-import { Notice } from "./Notice";
 import { Box } from "@mui/material";
 
 export function MyPortion() {
@@ -10,7 +9,6 @@ export function MyPortion() {
 
   return (
     <>
-      <Notice />
       {cookwares.map((cookware) => (
         <Cookware key={cookware.id} cookware={cookware} />
       ))}

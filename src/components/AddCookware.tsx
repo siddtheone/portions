@@ -8,7 +8,6 @@ import { Cookware } from "@/types";
 
 import { AddEditCookware } from "./AddEditCookware";
 import { useCookware } from "../store/useCookware";
-import { trackAction } from "@/lib/analytics";
 
 export function AddCookware() {
   const [open, setOpen] = useState(false);
@@ -17,7 +16,6 @@ export function AddCookware() {
   const handleSubmit = (params: Pick<Cookware, "name" | "weight">) => {
     setOpen(false);
     addNewCookware(params);
-    trackAction("cookware_add");
   };
 
   return (
