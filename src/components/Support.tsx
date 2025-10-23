@@ -1,6 +1,14 @@
 "use client";
+import { SUPPORT_LINKS } from "@/constants";
 import { Coffee } from "@mui/icons-material";
-import { Box, Button, Dialog, DialogTitle } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogTitle,
+  Link,
+  List,
+  ListItem,
+} from "@mui/material";
 import { useState } from "react";
 
 export function Support() {
@@ -18,15 +26,15 @@ export function Support() {
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle textAlign="center">Show your love</DialogTitle>
-        <Box
-          sx={{
-            maxWidth: 300,
-            height: 300,
-            p: 4,
-          }}
-        >
-          <img src="./qr.png" alt="upi qr" width="100%" />
-        </Box>
+        <List>
+          {SUPPORT_LINKS.map((link) => (
+            <ListItem key={link.name}>
+              <Link href={link.link} target="_blank" rel="noopener noreferrer">
+                {link.name}
+              </Link>
+            </ListItem>
+          ))}
+        </List>
       </Dialog>
     </>
   );

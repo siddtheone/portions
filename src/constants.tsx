@@ -32,3 +32,13 @@ export const MOCK_COOKWARES = [
     weight: 1000,
   },
 ];
+export const SUPPORT_LINKS = [
+  {
+    name: "UPI",
+    link: "upi://pay?pa=siddtheone-1@okicici&tn=Love%20for%20the%20app",
+  },
+  {
+    name: "Buy me a coffee",
+    link: "https://buymeacoffee.com/1313",
+  },
+];
