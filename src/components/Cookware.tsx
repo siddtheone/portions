@@ -36,7 +36,7 @@ export function Cookware({ cookware }: { cookware: CookwareType }) {
         action={
           <>
             <DeleteCookware id={id} />
-            <IconButton onClick={() => onUpdate({ expanded: !expanded })}>
+            <IconButton>
               {expanded ? <ExpandLess /> : <ExpandMore />}
             </IconButton>
           </>
@@ -51,6 +51,7 @@ export function Cookware({ cookware }: { cookware: CookwareType }) {
             </Typography>
           </>
         }
+        onClick={() => onUpdate({ expanded: !expanded })}
       />
       <Collapse in={expanded}>
         <CardContent>
