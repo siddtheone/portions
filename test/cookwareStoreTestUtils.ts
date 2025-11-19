@@ -10,7 +10,7 @@ const baseFunctions = {
 };
 
 export const buildCookwareState = (
-  overrides: Partial<CookwareStore> = {},
+  overrides: Partial<CookwareStore> = {}
 ): CookwareStore => ({
   cookwares: overrides.cookwares ?? [],
   addNewCookware: overrides.addNewCookware ?? baseFunctions.addNewCookware,
@@ -26,4 +26,3 @@ export const resetCookwareStore = (overrides?: Partial<CookwareStore>) => {
 };
 
 export const getCookwareState = () => useCookware.getState();
-
