@@ -23,7 +23,7 @@ export function DeleteCookware({ id }: Pick<Cookware, "id">) {
 
   return (
     <>
-      <IconButton onClick={handleClick}>
+      <IconButton aria-label="delete-cookware" onClick={handleClick}>
         <Delete />
       </IconButton>
       <Popover

@@ -61,10 +61,6 @@ export function ShareAppLink() {
   }, [resetCopiedState, targetUrl]);
 
   const handleShare = useCallback(async () => {
-    if (!targetUrl) {
-      return;
-    }
-
     if (isNativeShell) {
       window.ReactNativeWebView?.postMessage(
         JSON.stringify({
