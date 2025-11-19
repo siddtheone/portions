@@ -10,6 +10,7 @@ import {
   ListItem,
 } from "@mui/material";
 import { useState } from "react";
+import { ShareAppLink } from "./ShareAppLink";
 
 export function Support() {
   const [open, setOpen] = useState(false);
@@ -27,6 +28,7 @@ export function Support() {
       <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle textAlign="center">Show your love</DialogTitle>
         <List>
+          <ShareAppLink />
           {SUPPORT_LINKS.map((link) => (
             <ListItem key={link.name}>
               <Link href={link.link} target="_blank" rel="noopener noreferrer">
