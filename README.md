@@ -59,6 +59,10 @@ npm run lint
 
 This project is compatible with most Node/Next.js hosts and Vercel. Build the app (`npm run build`) and run with `npm start`, or connect the repository to Vercel for automatic deployments.
 
+### Vercel CI
+
+- Leave the default Vercel **Build Command** (`npm run build`). The script now runs `npm run lint`, `npm run test`, and `next build --turbopack` sequentially, ensuring deployments only proceed when lint, Vitest coverage, and production builds all succeed.
+
 ## Notes
 
 - Material UI is configured for Next.js App Router via `@mui/material-nextjs` and Emotion. See `src/components/ClientThemeProvider.tsx` and `src/app/layout.tsx`.
