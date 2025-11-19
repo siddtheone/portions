@@ -8,9 +8,15 @@ import {
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+type TestWindow = Window & {
+  ReactNativeWebView?: {
+    postMessage(message: string): void;
+  };
+};
+
 describe("ShareAppLink", () => {
   beforeEach(() => {
-    delete (window as any).ReactNativeWebView;
+    delete (window as TestWindow).ReactNativeWebView;
   });
 
   it("uses the Web Share API when available", async () => {
@@ -71,7 +77,7 @@ describe("ShareAppLink", () => {
   it("sends a message to the native shell when present", async () => {
     const user = userEvent.setup();
     const postMessage = vi.fn();
-    (window as any).ReactNativeWebView = {
+    (window as TestWindow).ReactNativeWebView = {
       postMessage,
     };
     Object.defineProperty(navigator, "share", {
