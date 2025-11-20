@@ -1,6 +1,15 @@
 import "@testing-library/jest-dom/vitest";
 import { afterEach, beforeEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
+import * as React from "react";
+import type { act as LegacyAct } from "react-dom/test-utils";
+
+const reactDomTestUtils = await import("react-dom/test-utils");
+const actPolyfill = reactDomTestUtils.act as typeof LegacyAct | undefined;
+
+if (actPolyfill && !(React as { act?: typeof LegacyAct }).act) {
+  (React as { act?: typeof LegacyAct }).act = actPolyfill;
+}
 
 afterEach(() => {
   cleanup();
@@ -41,4 +50,3 @@ beforeEach(() => {
     });
   }
 });
-
