@@ -7,8 +7,15 @@ import type { act as LegacyAct } from "react-dom/test-utils";
 const reactDomTestUtils = await import("react-dom/test-utils");
 const actPolyfill = reactDomTestUtils.act as typeof LegacyAct | undefined;
 
-if (actPolyfill && !(React as { act?: typeof LegacyAct }).act) {
-  (React as { act?: typeof LegacyAct }).act = actPolyfill;
+const reactActDescriptor = Object.getOwnPropertyDescriptor(React, "act");
+
+if (actPolyfill) {
+  if (!reactActDescriptor?.value) {
+    Object.defineProperty(React, "act", {
+      configurable: true,
+      value: actPolyfill,
+    });
+  }
 }
 
 afterEach(() => {
