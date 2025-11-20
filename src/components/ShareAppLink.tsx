@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  PLAY_STORE_URL,
-  SHARE_TEXT,
-  SHARE_TITLE,
-  WEB_APP_URL,
-} from "@/constants";
+import { PLAY_STORE_URL, SHARE_TEXT, SHARE_TITLE } from "@/constants";
 import { Link, ListItem } from "@mui/material";
-import { MouseEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { useState } from "react";
+import { hasNativeShareBridge, resolveShareTargetUrl } from "@/lib/share";
 
 declare global {
   interface Window {
@@ -17,35 +13,14 @@ declare global {
   }
 }
 
-const SHARE_FALLBACK_RESET_MS = 2500;
-
 export function ShareAppLink() {
-  const [isNativeShell, setIsNativeShell] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    setIsNativeShell(
-      typeof window !== "undefined" && Boolean(window.ReactNativeWebView)
-    );
-  }, []);
+  const resetCopiedState = () => {
+    setTimeout(() => setCopied(false), 2500);
+  };
 
-  const targetUrl = useMemo(() => {
-    if (isNativeShell) {
-      return PLAY_STORE_URL;
-    }
-
-    if (typeof window !== "undefined" && window.location?.origin) {
-      return window.location.origin;
-    }
-
-    return WEB_APP_URL;
-  }, [isNativeShell]);
-
-  const resetCopiedState = useCallback(() => {
-    setTimeout(() => setCopied(false), SHARE_FALLBACK_RESET_MS);
-  }, []);
-
-  const copyLinkFallback = useCallback(async () => {
+  const copyLinkFallback = async (targetUrl: string) => {
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(targetUrl);
@@ -58,10 +33,12 @@ export function ShareAppLink() {
     }
 
     window.prompt("Share this link", targetUrl);
-  }, [resetCopiedState, targetUrl]);
+  };
 
-  const handleShare = useCallback(async () => {
-    if (isNativeShell) {
+  const handleShare = async () => {
+    const targetUrl = resolveShareTargetUrl(PLAY_STORE_URL);
+
+    if (hasNativeShareBridge()) {
       window.ReactNativeWebView?.postMessage(
         JSON.stringify({
           type: "share",
@@ -91,22 +68,19 @@ export function ShareAppLink() {
       }
     }
 
-    await copyLinkFallback();
-  }, [copyLinkFallback, isNativeShell, targetUrl]);
+    await copyLinkFallback(targetUrl);
+  };
 
   const label = copied ? "Link copied" : "Share the app";
 
-  const onLinkClick = useCallback(
-    (event: MouseEvent<HTMLAnchorElement>) => {
-      event.preventDefault();
-      void handleShare();
-    },
-    [handleShare]
-  );
-
   return (
     <ListItem>
-      <Link href="#share-app" onClick={onLinkClick} sx={{ textAlign: "left" }}>
+      <Link
+        component="button"
+        type="button"
+        onClick={handleShare}
+        underline="hover"
+      >
         {label}
       </Link>
     </ListItem>

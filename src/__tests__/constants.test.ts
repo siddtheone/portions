@@ -6,7 +6,6 @@ import {
   SHARE_TEXT,
   SHARE_TITLE,
   SUPPORT_LINKS,
-  WEB_APP_URL,
 } from "@/constants";
 
 describe("constants", () => {
@@ -21,7 +20,6 @@ describe("constants", () => {
       "UPI",
       "Buy me a coffee",
     ]);
-    expect(WEB_APP_URL).toMatch(/^https:\/\/.+/);
     expect(PLAY_STORE_URL).toMatch(/^https:\/\/play\.google\.com/);
     expect(SHARE_TITLE).toBe("The Portions");
     expect(SHARE_TEXT).toContain("Plan servings");

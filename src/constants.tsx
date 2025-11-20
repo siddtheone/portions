@@ -43,8 +43,6 @@ export const SUPPORT_LINKS = [
   },
 ];
 
-export const WEB_APP_URL = "https://the-portions.vercel.app/";
-
 export const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.gettheradical.theportions";
 

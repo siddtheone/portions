@@ -18,8 +18,8 @@ describe("Support", () => {
     const dialog = screen.getByRole("dialog");
     expect(dialog).toBeInTheDocument();
 
-    const links = screen.getAllByRole("link");
-    expect(links[0]).toHaveTextContent("Share the app");
+    const listItems = screen.getAllByRole("listitem");
+    expect(listItems[0]).toHaveTextContent("Share the app");
 
     SUPPORT_LINKS.forEach(({ name }) => {
       expect(screen.getByRole("link", { name })).toBeInTheDocument();
