@@ -75,12 +75,7 @@ export function ShareAppLink() {
 
   return (
     <ListItem>
-      <Link
-        component="button"
-        type="button"
-        onClick={handleShare}
-        underline="hover"
-      >
+      <Link component="button" type="button" onClick={handleShare}>
         {label}
       </Link>
     </ListItem>
