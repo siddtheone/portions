@@ -1,9 +1,5 @@
 import { ShareAppLink } from "@/components/ShareAppLink";
-import {
-  PLAY_STORE_URL,
-  SHARE_TEXT,
-  SHARE_TITLE,
-} from "@/constants";
+import { PLAY_STORE_URL, SHARE_TEXT, SHARE_TITLE } from "@/constants";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -69,7 +65,7 @@ describe("ShareAppLink", () => {
 
     expect(window.prompt).toHaveBeenCalledWith(
       "Share this link",
-      window.location.origin,
+      window.location.origin
     );
   });
 
@@ -95,7 +91,7 @@ describe("ShareAppLink", () => {
           text: SHARE_TEXT,
           url: PLAY_STORE_URL,
         },
-      }),
+      })
     );
   });
 
@@ -119,7 +115,7 @@ describe("ShareAppLink", () => {
 
     expect(warnSpy).toHaveBeenCalledWith(
       "Unable to copy share link",
-      expect.any(Error),
+      expect.any(Error)
     );
     expect(window.prompt).toHaveBeenCalled();
 
@@ -146,4 +142,3 @@ describe("ShareAppLink", () => {
     expect(clipboardSpy).not.toHaveBeenCalled();
   });
 });
-
