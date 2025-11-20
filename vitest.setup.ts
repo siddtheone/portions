@@ -1,22 +1,20 @@
 import "@testing-library/jest-dom/vitest";
 import { afterEach, beforeEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
-import * as React from "react";
-import type { act as LegacyAct } from "react-dom/test-utils";
 
-const reactDomTestUtils = await import("react-dom/test-utils");
-const actPolyfill = reactDomTestUtils.act as typeof LegacyAct | undefined;
+vi.mock("react", async () => {
+  const actual = await vi.importActual<typeof import("react")>("react");
+  const { act } = await import("react-dom/test-utils");
 
-const reactActDescriptor = Object.getOwnPropertyDescriptor(React, "act");
-
-if (actPolyfill) {
-  if (!reactActDescriptor?.value) {
-    Object.defineProperty(React, "act", {
-      configurable: true,
-      value: actPolyfill,
-    });
+  if (typeof actual.act === "function") {
+    return actual;
   }
-}
+
+  return {
+    ...actual,
+    act,
+  };
+});
 
 afterEach(() => {
   cleanup();
