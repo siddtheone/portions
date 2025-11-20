@@ -8,7 +8,11 @@ const reactActDescriptor = Object.getOwnPropertyDescriptor(React, "act");
 const reactDomTestUtils = await import("react-dom/test-utils");
 const polyfill = reactDomTestUtils.act as typeof LegacyAct | undefined;
 
-if (!reactActDescriptor?.value && polyfill) {
+const canDefineAct =
+  !reactActDescriptor ||
+  (reactActDescriptor.configurable && !reactActDescriptor.value);
+
+if (canDefineAct && polyfill) {
   Object.defineProperty(React, "act", {
     configurable: true,
     writable: true,
