@@ -1,6 +1,6 @@
 import { Cookware } from "@/components/Cookware";
 import { resetCookwareStore } from "@test/cookwareStoreTestUtils";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const cookware = {
@@ -58,6 +58,18 @@ describe("Cookware", () => {
     expect(updateCookware).toHaveBeenCalledWith("cook-1", {
       weightWithMeal: 0,
     });
+  });
+
+  it("focuses the weight input when a cookware is expanded", async () => {
+    const { rerender } = render(
+      <Cookware cookware={{ ...cookware, expanded: false }} />
+    );
+
+    rerender(<Cookware cookware={{ ...cookware, expanded: true }} />);
+
+    await waitFor(() =>
+      expect(screen.getByLabelText(/Weight with meal/i)).toHaveFocus()
+    );
   });
 });
 

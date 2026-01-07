@@ -17,6 +17,7 @@ import {
 } from "@mui/material";
 
 import { NumericFormat } from "react-number-format";
+import { useEffect, useRef } from "react";
 import { ExpandLess, ExpandMore, RiceBowl } from "@mui/icons-material";
 import { Cookware as CookwareType } from "@/types";
 import { MAX_WEIGHT, SERVINGS } from "../constants";
@@ -27,6 +28,17 @@ import { PortionTable } from "./PortionTable";
 export function Cookware({ cookware }: { cookware: CookwareType }) {
   const { id, name, servingCount, weight, weightWithMeal, expanded } = cookware;
   const updateCookware = useCookware((state) => state.updateCookware);
+  const weightWithMealInputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (!expanded) return;
+    const input = weightWithMealInputRef.current;
+    if (input) {
+      input.focus();
+      input.select();
+    }
+  }, [expanded]);
+
   const onUpdate = (changed: Partial<CookwareType>) => {
     updateCookware(id, changed);
   };
@@ -59,6 +71,7 @@ export function Cookware({ cookware }: { cookware: CookwareType }) {
             value={weightWithMeal}
             customInput={TextField}
             label="Weight with meal"
+            inputRef={weightWithMealInputRef}
             onValueChange={({ floatValue }) =>
               onUpdate({ weightWithMeal: floatValue ? floatValue : 0 })
             }
